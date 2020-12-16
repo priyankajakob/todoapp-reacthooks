@@ -5,23 +5,23 @@ import TodoAdd from './TodoAdd'
 import { TodoProvider } from '../context/TodoContext'
 
 import combineReducers from 'react-combine-reducers'
-import { fetchTodos } from './helper'
+import { fetchTodos, saveTodos } from './helper'
 
 const Todo = ()=>{
-    const [todosList,setTodosList] = useState([])
-
+    const [todosList,setTodosList] = useState(fetchTodos()) //initial get of items from local storage will be here
+    
+    //useeffect will load latest todosList into your local storage whenever it is updated
     useEffect(()=>{
-        setTodosList(fetchTodos())
-        
-    },[])
+        saveTodos(todosList)
+    },[todosList])
 
     const initialTodos={todos:todosList}
-    console.log(initialTodos)
+
     const todosReducer = (state,action)=>{
         switch(action.type)
         {
             case "ADD_TODO":{
-                // setTodosList(...state.todos)
+                setTodosList([...state.todos,action.payload])//updating todosList so that useeffect is called to reflect view update
                 return {todos : [...state.todos,action.payload]}
             }
             case "DELETE_TODO":{

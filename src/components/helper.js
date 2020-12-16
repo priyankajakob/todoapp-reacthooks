@@ -11,14 +11,10 @@ export const fetchTodos = ()=>{
     return todos
 }
 
-export const saveTodos = (todo)=>{
-    let todos = []
+export const saveTodos = (todos)=>{
+    
     if(typeof window !== undefined)
     {
-        if(localStorage.getItem("todos"))
-        todos = JSON.parse(localStorage.getItem("todos"))
-
-        todos.push(todo)
         localStorage.setItem("todos",JSON.stringify(todos))
     }
 }

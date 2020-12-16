@@ -40,7 +40,7 @@ const TodoAdd = ()=>{
         if(name)
         {
             dispatch({type:"ADD_TODO",payload:todo}) 
-            saveTodos(todo)
+            // saveTodos(todo)
             dispatch({type:"DECREMENT"}) 
             setName("")   
         }
