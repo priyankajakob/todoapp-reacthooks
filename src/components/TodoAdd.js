@@ -4,7 +4,6 @@
 import { useState, useContext } from 'react'
 import { TodoContext } from '../context/TodoContext'
 import { v4 } from "uuid"
-import { saveTodos } from './helper'
 
 const TodoAdd = ()=>{
     const [name,setName]=useState("")

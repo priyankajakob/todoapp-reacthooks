@@ -68,7 +68,7 @@ const Todo = ()=>{
     //  const [state,dispatch] = useReducer(reducer,initialState)
 
 
-    const initialCount = {count:5}
+    const initialCount = {count:(5-todosList.length)} //easier than maintaing count also in LS
     const countReducer = (state,action)=>{
         switch(action.type)
         {
