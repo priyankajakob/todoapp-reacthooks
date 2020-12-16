@@ -30,6 +30,7 @@ import { Fragment, useContext } from 'react'
 import { TodoContext } from '../context/TodoContext'
 
 import { ArchiveFill, PencilFill } from 'react-bootstrap-icons'
+import { deleteTodo } from './helper'
 
 const TodoList = ()=>{
     const { state, dispatch } = useContext(TodoContext)
@@ -49,6 +50,7 @@ const TodoList = ()=>{
                                 <button
                                  onClick={()=>{
                                     dispatch({type:"DELETE_TODO",payload:{id:todo.id}})
+                                    deleteTodo(todo.id)
                                     dispatch({type:"INCREMENT"})
                                 }}>
                                     <ArchiveFill/>

@@ -4,6 +4,7 @@
 import { useState, useContext } from 'react'
 import { TodoContext } from '../context/TodoContext'
 import { v4 } from "uuid"
+import { saveTodos } from './helper'
 
 const TodoAdd = ()=>{
     const [name,setName]=useState("")
@@ -30,10 +31,16 @@ const TodoAdd = ()=>{
     const { state,dispatch } = useContext(TodoContext)
     const {count} = state.count
 
+    const todo = {
+        name,
+        id:v4()
+    }
+
     const handleAdd = ()=>{
         if(name)
         {
-            dispatch({type:"ADD_TODO",payload:{name,id:v4()}}) 
+            dispatch({type:"ADD_TODO",payload:todo}) 
+            saveTodos(todo)
             dispatch({type:"DECREMENT"}) 
             setName("")   
         }

@@ -1,17 +1,27 @@
-import {useReducer} from 'react'
+import {useReducer,useState,useEffect} from 'react'
 
 import TodoList from './TodoList'
 import TodoAdd from './TodoAdd'
 import { TodoProvider } from '../context/TodoContext'
 
 import combineReducers from 'react-combine-reducers'
+import { fetchTodos } from './helper'
 
 const Todo = ()=>{
-    const initialTodos={todos:[]}
+    const [todosList,setTodosList] = useState([])
+
+    useEffect(()=>{
+        setTodosList(fetchTodos())
+        
+    },[])
+
+    const initialTodos={todos:todosList}
+    console.log(initialTodos)
     const todosReducer = (state,action)=>{
         switch(action.type)
         {
             case "ADD_TODO":{
+                // setTodosList(...state.todos)
                 return {todos : [...state.todos,action.payload]}
             }
             case "DELETE_TODO":{
@@ -83,7 +93,6 @@ const Todo = ()=>{
     // count: {count: 0}
     // todos: {todos: Array(0),editMode:false}
     // __proto__: Object
-
     return(
         <TodoProvider value = {{state,dispatch}}>
               <div>
