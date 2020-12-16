@@ -29,7 +29,7 @@
 import { Fragment, useContext } from 'react'
 import { TodoContext } from '../context/TodoContext'
 
-import { ArchiveFill, PencilFill } from 'react-bootstrap-icons'
+import { Check2All } from 'react-bootstrap-icons'
 import { deleteTodo } from './helper'
 
 const TodoList = ()=>{
@@ -53,7 +53,8 @@ const TodoList = ()=>{
                                     deleteTodo(todo.id)
                                     dispatch({type:"INCREMENT"})
                                 }}>
-                                    <ArchiveFill/>
+                                    {/* <ArchiveFill/> */}
+                                    <Check2All/>
                                 </button>
                                 {/* <button>
                                     <PencilFill/>
